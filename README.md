@@ -4,7 +4,7 @@ Aplicação full-stack desenvolvida do zero para gerenciar as operações de uma
 
 O **frontend** foi construído com **React 18 + TypeScript + Tailwind CSS**, utilizando **Zustand** para estado global, **React Hook Form + Zod** para formulários tipados e **Recharts** para visualização de dados. O **backend** é uma API RESTful em **Node.js + Express + TypeScript**, com persistência em JSON, controle de concorrência via mutex e sistema de backups integrado.
 
-A aplicação está em produção com deploy automatizado: frontend no **GitHub Pages** via GitHub Actions e backend no **Render**.
+A aplicação está em produção com deploy frontend no **GitHub Pages** via GitHub Actions e backend no **Render**.
 
 🔗 **Acesse a aplicação:** [https://clayton79.github.io/ONG-Wilson-Aquino/](https://clayton79.github.io/ONG-Wilson-Aquino/)
 
