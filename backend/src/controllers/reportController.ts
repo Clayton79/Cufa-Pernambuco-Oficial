@@ -13,7 +13,7 @@ export class ReportController {
 
       const format = req.query.format as string;
       if (format === 'csv') {
-        const csv = reportService.toCSV(report.data as Record<string, unknown>[]);
+        const csv = reportService.toCSV(report.data as unknown as Record<string, unknown>[]);
         res.setHeader('Content-Type', 'text/csv');
         res.setHeader('Content-Disposition', `attachment; filename=${type}-report.csv`);
         res.send(csv);

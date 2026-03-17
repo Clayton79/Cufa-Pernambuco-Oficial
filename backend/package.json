@@ -5,9 +5,10 @@
   "main": "dist/index.js",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc",
+    "build": "tsc && npm run seed:prod",
     "start": "node dist/index.js",
     "seed": "tsx src/utils/seed.ts",
+    "seed:prod": "node dist/utils/seed.js",
     "lint": "eslint src --ext .ts",
     "format": "prettier --write \"src/**/*.ts\""
   },

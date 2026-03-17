@@ -58,7 +58,7 @@ export class DashboardService {
       allVolunteers,
       (v) => v.createdAt,
       () => 1
-    );
+    ).map(({ month, amount }) => ({ month, count: amount }));
 
     const projectsByStatus = Object.entries(
       allProjects.reduce(

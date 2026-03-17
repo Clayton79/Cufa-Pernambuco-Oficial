@@ -10,4 +10,5 @@ export const config = {
   dataDir: path.resolve(process.env.DATA_DIR || './data'),
   backupDir: path.resolve(process.env.BACKUP_DIR || './backups'),
   corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5173',
+  nodeEnv: process.env.NODE_ENV || 'development',
 };

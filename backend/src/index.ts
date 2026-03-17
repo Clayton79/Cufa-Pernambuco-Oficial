@@ -7,7 +7,10 @@ import { errorHandler } from './middlewares';
 const app = express();
 
 // Global middleware
-app.use(cors({ origin: config.corsOrigin, credentials: true }));
+app.use(cors({
+  origin: config.corsOrigin.split(',').map(s => s.trim()),
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

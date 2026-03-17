@@ -27,7 +27,7 @@ export class EventController {
     }
   }
 
-  async getUpcoming(req: Request, res: Response): Promise<void> {
+  async getUpcoming(_req: Request, res: Response): Promise<void> {
     try {
       const events = await eventService.getUpcoming();
       res.json({ success: true, data: events });

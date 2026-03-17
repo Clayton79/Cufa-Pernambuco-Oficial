@@ -1,4 +1,6 @@
-const API_BASE = '/api';
+const API_BASE = import.meta.env.PROD
+  ? 'https://ong-wilson-aquino-api.onrender.com/api'
+  : '/api';
 
 async function request<T>(
   endpoint: string,

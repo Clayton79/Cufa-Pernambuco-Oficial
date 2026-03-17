@@ -1,5 +1,4 @@
 import { volunteerRepository, donationRepository, projectRepository, eventRepository } from '../repositories';
-import { Volunteer, Donation, Project, OngEvent } from '../models';
 
 type ReportType = 'volunteers' | 'donations' | 'projects' | 'events';
 
