@@ -12,9 +12,11 @@ export function Logo({ collapsed = false, className, variant = 'light' }: LogoPr
 
   return (
     <div className={clsx('flex items-center gap-3', collapsed && 'justify-center', className)}>
-      <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center flex-shrink-0">
-        <span className="text-white font-extrabold text-lg leading-none">C</span>
-      </div>
+      <img
+        src={`${import.meta.env.BASE_URL}CUFA%20PE.jpg`}
+        alt="CUFA Pernambuco"
+        className="w-10 h-10 rounded-xl object-cover flex-shrink-0"
+      />
       {!collapsed && (
         <div>
           <h1 className={clsx('text-sm font-bold leading-tight', textColor)}>CUFA Pernambuco</h1>

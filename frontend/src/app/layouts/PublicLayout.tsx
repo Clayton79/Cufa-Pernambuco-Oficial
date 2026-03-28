@@ -20,9 +20,11 @@ export function PublicLayout() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link to="/" className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg bg-primary flex items-center justify-center">
-                <span className="text-white font-extrabold text-lg leading-none">C</span>
-              </div>
+              <img
+                src={`${import.meta.env.BASE_URL}CUFA%20PE.jpg`}
+                alt="CUFA Pernambuco"
+                className="w-9 h-9 rounded-lg object-cover"
+              />
               <div className="hidden sm:block">
                 <span className="font-bold text-lg tracking-tight">CUFA Pernambuco</span>
               </div>
@@ -90,9 +92,11 @@ export function PublicLayout() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <span className="text-white font-extrabold text-base leading-none">C</span>
-                </div>
+                <img
+                  src={`${import.meta.env.BASE_URL}CUFA%20PE.jpg`}
+                  alt="CUFA Pernambuco"
+                  className="w-8 h-8 rounded-lg object-cover"
+                />
                 <span className="font-bold text-white">CUFA Pernambuco</span>
               </div>
               <p className="text-sm leading-relaxed">
