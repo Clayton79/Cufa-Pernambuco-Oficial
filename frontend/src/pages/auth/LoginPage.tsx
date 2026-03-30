@@ -6,6 +6,7 @@ import { LogIn } from 'lucide-react';
 import { Input } from '../../shared/components';
 import { Button } from '../../shared/components';
 import { useAuthStore } from '../../shared/stores';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 import { useState } from 'react';
 
 const schema = z.object({
@@ -16,6 +17,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function LoginPage() {
+  useDocumentTitle('Entrar');
   const { login, isLoading } = useAuthStore();
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -42,7 +44,7 @@ export function LoginPage() {
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-danger-light text-danger text-sm">
+        <div role="alert" className="mb-4 p-3 rounded-lg bg-danger-light text-danger text-sm">
           {error}
         </div>
       )}
@@ -52,6 +54,7 @@ export function LoginPage() {
           label="Email"
           type="email"
           placeholder="seu@email.com"
+          autoComplete="email"
           error={errors.email?.message}
           {...register('email')}
         />
@@ -59,6 +62,7 @@ export function LoginPage() {
           label="Senha"
           type="password"
           placeholder="••••••"
+          autoComplete="current-password"
           error={errors.password?.message}
           {...register('password')}
         />

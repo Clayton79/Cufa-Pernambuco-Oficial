@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { Card, CardHeader, Button, Input } from '../../shared/components';
 import { reportApi } from '../../shared/services';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 type ReportType = 'volunteers' | 'donations' | 'projects' | 'events';
 
@@ -23,6 +24,7 @@ const reportTypes: ReportConfig[] = [
 ];
 
 export function ReportsPage() {
+  useDocumentTitle('Relatórios');
   const [selectedType, setSelectedType] = useState<ReportType>('volunteers');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -127,7 +129,7 @@ export function ReportsPage() {
 
       {/* Errors */}
       {error && (
-        <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">{error}</div>
+        <div role="alert" className="bg-red-50 border border-red-200 text-red-700 rounded-lg p-4 text-sm">{error}</div>
       )}
 
       {/* Report Data */}

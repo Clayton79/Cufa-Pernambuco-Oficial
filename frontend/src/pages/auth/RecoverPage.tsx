@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Mail, ArrowLeft, CheckCircle } from 'lucide-react';
 import { Input, Button } from '../../shared/components';
 import { authApi } from '../../shared/services';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 import { useState } from 'react';
 
 const schema = z.object({
@@ -14,6 +15,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function RecoverPage() {
+  useDocumentTitle('Recuperar Acesso');
   const [isLoading, setIsLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -72,6 +74,7 @@ export function RecoverPage() {
           label="Email"
           type="email"
           placeholder="seu@email.com"
+          autoComplete="email"
           error={errors.email?.message}
           {...register('email')}
         />

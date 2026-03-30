@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { ArrowLeft, Plus, X, Save, Loader2 } from 'lucide-react';
 import { Card, CardHeader, Button, Input, Select, Textarea, PageLoader, ErrorState } from '../../shared/components';
 import { volunteerApi } from '../../shared/services';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const volunteerFormSchema = z.object({
   name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -29,6 +30,7 @@ export function VolunteerFormPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const isEditing = !!id;
+  useDocumentTitle(isEditing ? 'Editar Voluntário' : 'Novo Voluntário');
   const [isFetching, setIsFetching] = useState(isEditing);
   const [fetchError, setFetchError] = useState('');
 

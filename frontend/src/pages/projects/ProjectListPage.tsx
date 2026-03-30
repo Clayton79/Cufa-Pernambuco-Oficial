@@ -6,6 +6,7 @@ import {
 } from '../../shared/components';
 import { projectApi } from '../../shared/services';
 import type { Project } from '../../shared/types';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const statusConfig: Record<string, { label: string; variant: 'success' | 'warning' | 'danger' | 'info' | 'neutral' }> = {
   planning: { label: 'Planejamento', variant: 'info' },
@@ -16,6 +17,7 @@ const statusConfig: Record<string, { label: string; variant: 'success' | 'warnin
 };
 
 export function ProjectListPage() {
+  useDocumentTitle('Projetos');
   const navigate = useNavigate();
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -77,9 +79,9 @@ export function ProjectListPage() {
       <Card>
         <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" aria-hidden="true" />
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar por nome ou descrição..." className="input pl-10" />
+              placeholder="Buscar por nome ou descrição..." className="input pl-10" aria-label="Buscar projetos" />
           </div>
           <Select value={statusFilter}
             onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
@@ -111,14 +113,14 @@ export function ProjectListPage() {
                   <div className="flex items-start justify-between mb-3">
                     <Badge variant={cfg.variant}>{cfg.label}</Badge>
                     <div className="flex gap-1">
-                      <Button variant="ghost" size="sm" onClick={() => navigate(`/projects/${project.id}`)}>
-                        <Eye className="w-4 h-4" />
+                      <Button variant="ghost" size="sm" onClick={() => navigate(`/projects/${project.id}`)} aria-label="Ver detalhes">
+                        <Eye className="w-4 h-4" aria-hidden="true" />
                       </Button>
-                      <Button variant="ghost" size="sm" onClick={() => navigate(`/projects/${project.id}/edit`)}>
-                        <Edit className="w-4 h-4" />
+                      <Button variant="ghost" size="sm" onClick={() => navigate(`/projects/${project.id}/edit`)} aria-label="Editar">
+                        <Edit className="w-4 h-4" aria-hidden="true" />
                       </Button>
-                      <Button variant="ghost" size="sm" onClick={() => setDeleteId(project.id)}>
-                        <Trash2 className="w-4 h-4 text-danger" />
+                      <Button variant="ghost" size="sm" onClick={() => setDeleteId(project.id)} aria-label="Excluir">
+                        <Trash2 className="w-4 h-4 text-danger" aria-hidden="true" />
                       </Button>
                     </div>
                   </div>

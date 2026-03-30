@@ -10,6 +10,7 @@ import {
 } from '../../shared/components';
 import { eventApi } from '../../shared/services';
 import type { OngEvent, PaginatedResponse } from '../../shared/types';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const statusConfig: Record<string, { label: string; variant: 'success' | 'warning' | 'danger' | 'info' | 'neutral' }> = {
   scheduled:   { label: 'Agendado',   variant: 'info' },
@@ -19,6 +20,7 @@ const statusConfig: Record<string, { label: string; variant: 'success' | 'warnin
 };
 
 export function EventListPage() {
+  useDocumentTitle('Eventos');
   const navigate = useNavigate();
   const [events, setEvents] = useState<OngEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -83,11 +85,11 @@ export function EventListPage() {
       <Card>
         <div className="flex flex-wrap items-center gap-4">
           <div className="relative flex-1 min-w-[200px]">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <Input placeholder="Buscar eventos..." className="pl-9"
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" aria-hidden="true" />
+            <Input placeholder="Buscar eventos..." className="pl-9" aria-label="Buscar eventos"
               value={search} onChange={(e) => { setSearch(e.target.value); setPage(1); }} />
           </div>
-          <select className="input max-w-[180px]" value={statusFilter}
+          <select className="input max-w-[180px]" value={statusFilter} aria-label="Filtrar por status"
             onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}>
             <option value="">Todos os status</option>
             <option value="scheduled">Agendado</option>
@@ -134,14 +136,14 @@ export function EventListPage() {
                     </div>
                   </div>
                   <div className="flex items-center gap-2 flex-shrink-0">
-                    <Button variant="ghost" size="sm" onClick={() => navigate(`/events/${event.id}`)}>
-                      <Eye className="w-4 h-4" />
+                    <Button variant="ghost" size="sm" onClick={() => navigate(`/events/${event.id}`)} aria-label="Ver detalhes">
+                      <Eye className="w-4 h-4" aria-hidden="true" />
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => navigate(`/events/${event.id}/edit`)}>
-                      <Edit className="w-4 h-4" />
+                    <Button variant="ghost" size="sm" onClick={() => navigate(`/events/${event.id}/edit`)} aria-label="Editar">
+                      <Edit className="w-4 h-4" aria-hidden="true" />
                     </Button>
-                    <Button variant="ghost" size="sm" onClick={() => setDeleteTarget(event)}>
-                      <Trash2 className="w-4 h-4 text-red-500" />
+                    <Button variant="ghost" size="sm" onClick={() => setDeleteTarget(event)} aria-label="Excluir">
+                      <Trash2 className="w-4 h-4 text-red-500" aria-hidden="true" />
                     </Button>
                   </div>
                 </div>

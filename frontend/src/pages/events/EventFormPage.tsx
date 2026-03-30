@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { ArrowLeft, Save, Loader2 } from 'lucide-react';
 import { Card, CardHeader, Button, Input, Select, Textarea, PageLoader, ErrorState } from '../../shared/components';
 import { eventApi } from '../../shared/services';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const eventFormSchema = z.object({
   name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -27,6 +28,7 @@ export function EventFormPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const isEditing = !!id;
+  useDocumentTitle(isEditing ? 'Editar Evento' : 'Novo Evento');
   const [isFetching, setIsFetching] = useState(isEditing);
   const [fetchError, setFetchError] = useState('');
 

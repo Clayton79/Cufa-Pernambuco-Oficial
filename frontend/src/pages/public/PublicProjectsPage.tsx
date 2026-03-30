@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { FolderKanban, MapPin, Users } from 'lucide-react';
 import { api } from '../../shared/services/api';
 import type { Project, PaginatedResponse } from '../../shared/types';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const statusLabels: Record<string, string> = {
   planning: 'Planejamento',
@@ -20,6 +21,7 @@ const statusColors: Record<string, string> = {
 };
 
 export function PublicProjectsPage() {
+  useDocumentTitle('Projetos');
   const [projects, setProjects] = useState<Project[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -47,8 +49,9 @@ export function PublicProjectsPage() {
         </div>
 
         {isLoading ? (
-          <div className="flex justify-center py-20">
-            <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+          <div className="flex justify-center py-20" role="status" aria-live="polite">
+            <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" aria-hidden="true" />
+            <span className="sr-only">Carregando projetos...</span>
           </div>
         ) : projects.length === 0 ? (
           <p className="text-center text-muted py-20">Nenhum projeto cadastrado ainda.</p>

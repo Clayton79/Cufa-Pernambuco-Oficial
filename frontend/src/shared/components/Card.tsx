@@ -11,6 +11,14 @@ export function Card({ children, className, onClick }: CardProps) {
     <div
       className={clsx('card', onClick && 'cursor-pointer', className)}
       onClick={onClick}
+      role={onClick ? 'button' : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      onKeyDown={onClick ? (e: React.KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onClick();
+        }
+      } : undefined}
     >
       {children}
     </div>

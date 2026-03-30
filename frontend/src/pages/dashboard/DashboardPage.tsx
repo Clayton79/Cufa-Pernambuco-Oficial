@@ -23,6 +23,7 @@ import {
 import { Card, CardHeader, PageLoader, ErrorState, Badge } from '../../shared/components';
 import { dashboardApi } from '../../shared/services';
 import { useAuthStore } from '../../shared/stores';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 import type { DashboardSummary } from '../../shared/types';
 
 const CHART_COLORS = ['#0F7A3B', '#14A150', '#57AB82', '#89C8A8', '#B9DFCA'];
@@ -36,6 +37,7 @@ const statusLabels: Record<string, string> = {
 };
 
 export function DashboardPage() {
+  useDocumentTitle('Dashboard');
   const { user } = useAuthStore();
   const [summary, setSummary] = useState<DashboardSummary | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -148,7 +150,7 @@ export function DashboardPage() {
               </div>
             }
           />
-          <div className="h-64">
+          <div className="h-64" role="img" aria-label="Gráfico de barras mostrando doações por mês">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={summary.donationsByMonth}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -175,7 +177,7 @@ export function DashboardPage() {
         {/* Projects by Status */}
         <Card>
           <CardHeader title="Projetos por Status" />
-          <div className="h-64">
+          <div className="h-64" role="img" aria-label="Gráfico de pizza mostrando projetos por status">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie

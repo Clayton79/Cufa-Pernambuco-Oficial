@@ -12,8 +12,6 @@ Sistema web para gerenciamento das operações da **CUFA Pernambuco** (Central �
 
 ## API
 
-**Base URL:** `https://ong-wilson-aquino-api.onrender.com/api`
-
 | Módulo | Endpoints principais |
 |--------|---------------------|
 | Auth | `POST /auth/login` · `POST /auth/register` · `POST /auth/recover` · `GET /auth/profile` |

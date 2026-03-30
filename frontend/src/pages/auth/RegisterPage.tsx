@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { UserPlus } from 'lucide-react';
 import { Input, Button } from '../../shared/components';
 import { useAuthStore } from '../../shared/stores';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 import { useState } from 'react';
 
 const schema = z.object({
@@ -20,6 +21,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function RegisterPage() {
+  useDocumentTitle('Criar Conta');
   const { register: registerUser, isLoading } = useAuthStore();
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ export function RegisterPage() {
       </div>
 
       {error && (
-        <div className="mb-4 p-3 rounded-lg bg-danger-light text-danger text-sm">
+        <div role="alert" className="mb-4 p-3 rounded-lg bg-danger-light text-danger text-sm">
           {error}
         </div>
       )}
@@ -55,6 +57,7 @@ export function RegisterPage() {
         <Input
           label="Nome completo"
           placeholder="Seu nome"
+          autoComplete="name"
           error={errors.name?.message}
           {...register('name')}
         />
@@ -62,6 +65,7 @@ export function RegisterPage() {
           label="Email"
           type="email"
           placeholder="seu@email.com"
+          autoComplete="email"
           error={errors.email?.message}
           {...register('email')}
         />
@@ -69,6 +73,7 @@ export function RegisterPage() {
           label="Senha"
           type="password"
           placeholder="••••••"
+          autoComplete="new-password"
           error={errors.password?.message}
           {...register('password')}
         />
@@ -76,6 +81,7 @@ export function RegisterPage() {
           label="Confirmar senha"
           type="password"
           placeholder="••••••"
+          autoComplete="new-password"
           error={errors.confirmPassword?.message}
           {...register('confirmPassword')}
         />

@@ -14,8 +14,10 @@ import {
 } from '../../shared/components';
 import { volunteerApi } from '../../shared/services';
 import type { Volunteer } from '../../shared/types';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 export function VolunteerListPage() {
+  useDocumentTitle('Voluntários');
   const navigate = useNavigate();
   const [volunteers, setVolunteers] = useState<Volunteer[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -83,9 +85,9 @@ export function VolunteerListPage() {
       <Card>
         <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-3">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted" aria-hidden="true" />
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar por nome, email ou habilidade..." className="input pl-10" />
+              placeholder="Buscar por nome, email ou habilidade..." className="input pl-10" aria-label="Buscar voluntários" />
           </div>
           <Select value={statusFilter}
             onChange={(e) => { setStatusFilter(e.target.value); setPage(1); }}
@@ -155,14 +157,14 @@ export function VolunteerListPage() {
                       </td>
                       <td>
                         <div className="flex items-center justify-end gap-1">
-                          <Button variant="ghost" size="sm" onClick={() => navigate(`/volunteers/${vol.id}`)}>
-                            <Eye className="w-4 h-4" />
+                          <Button variant="ghost" size="sm" onClick={() => navigate(`/volunteers/${vol.id}`)} aria-label="Ver detalhes">
+                            <Eye className="w-4 h-4" aria-hidden="true" />
                           </Button>
-                          <Button variant="ghost" size="sm" onClick={() => navigate(`/volunteers/${vol.id}/edit`)}>
-                            <Edit className="w-4 h-4" />
+                          <Button variant="ghost" size="sm" onClick={() => navigate(`/volunteers/${vol.id}/edit`)} aria-label="Editar">
+                            <Edit className="w-4 h-4" aria-hidden="true" />
                           </Button>
-                          <Button variant="ghost" size="sm" onClick={() => setDeleteId(vol.id)}>
-                            <Trash2 className="w-4 h-4 text-danger" />
+                          <Button variant="ghost" size="sm" onClick={() => setDeleteId(vol.id)} aria-label="Excluir">
+                            <Trash2 className="w-4 h-4 text-danger" aria-hidden="true" />
                           </Button>
                         </div>
                       </td>

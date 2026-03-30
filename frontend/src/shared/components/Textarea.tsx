@@ -9,6 +9,7 @@ interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   ({ label, error, className, id, ...props }, ref) => {
     const textareaId = id || label?.toLowerCase().replace(/\s+/g, '-');
+    const errorId = error ? `${textareaId}-error` : undefined;
     return (
       <div className="space-y-1.5">
         {label && (
@@ -20,9 +21,11 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={clsx('input min-h-[100px] resize-y', error && 'input-error', className)}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={errorId}
           {...props}
         />
-        {error && <p className="text-xs text-danger mt-1">{error}</p>}
+        {error && <p id={errorId} className="text-xs text-danger mt-1" role="alert">{error}</p>}
       </div>
     );
   }

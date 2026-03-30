@@ -3,6 +3,9 @@ import { Outlet } from 'react-router-dom';
 export function AuthLayout() {
   return (
     <div className="min-h-screen flex bg-black">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">
+        Pular para o conteúdo
+      </a>
       {/* Left side: branding */}
       <div className="hidden lg:flex lg:w-1/2 items-center justify-center p-12 bg-gradient-to-br from-black via-gray-900 to-black">
         <div className="text-center max-w-md">
@@ -24,7 +27,7 @@ export function AuthLayout() {
 
       {/* Right side: form */}
       <div className="flex-1 flex items-center justify-center p-6 lg:p-12 bg-background">
-        <div className="w-full max-w-md">
+        <div id="main-content" className="w-full max-w-md">
           {/* Mobile logo */}
           <div className="lg:hidden text-center mb-8">
             <img

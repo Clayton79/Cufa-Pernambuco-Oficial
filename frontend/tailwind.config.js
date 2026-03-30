@@ -29,11 +29,11 @@ export default {
         foreground: '#111111',
         muted: {
           DEFAULT: '#6B7280',
-          foreground: '#9CA3AF',
+          foreground: '#6B7280',
           bg: '#DDE5DD',
         },
         border: {
-          DEFAULT: '#C9D3C9',
+          DEFAULT: '#849484',
           light: '#E5E7EB',
         },
         success: { DEFAULT: '#198754', light: '#D1FAE5' },

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Users, Heart, FolderKanban, Calendar } from 'lucide-react';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const highlights = [
   { icon: Users, label: 'Voluntários', description: 'Centenas de voluntários engajados em nossas ações.' },
@@ -9,6 +10,7 @@ const highlights = [
 ];
 
 export function HomePage() {
+  useDocumentTitle('Início');
   return (
     <div>
       {/* Hero */}

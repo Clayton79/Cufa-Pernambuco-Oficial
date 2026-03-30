@@ -1,7 +1,9 @@
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useState } from 'react';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 export function ContactPage() {
+  useDocumentTitle('Contato');
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -73,27 +75,27 @@ export function ContactPage() {
               <form onSubmit={handleSubmit} className="bg-white rounded-xl border border-border p-6 space-y-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Nome *</label>
-                    <input type="text" required className="input" placeholder="Seu nome completo" />
+                    <label htmlFor="contact-name" className="block text-sm font-medium text-foreground mb-1.5">Nome *</label>
+                    <input id="contact-name" type="text" required className="input" placeholder="Seu nome completo" autoComplete="name" />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Email *</label>
-                    <input type="email" required className="input" placeholder="seu@email.com" />
+                    <label htmlFor="contact-email" className="block text-sm font-medium text-foreground mb-1.5">Email *</label>
+                    <input id="contact-email" type="email" required className="input" placeholder="seu@email.com" autoComplete="email" />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Assunto *</label>
-                  <input type="text" required className="input" placeholder="Assunto da mensagem" />
+                  <label htmlFor="contact-subject" className="block text-sm font-medium text-foreground mb-1.5">Assunto *</label>
+                  <input id="contact-subject" type="text" required className="input" placeholder="Assunto da mensagem" />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-foreground mb-1.5">Mensagem *</label>
-                  <textarea required className="input min-h-[120px]" rows={5} placeholder="Escreva sua mensagem..." />
+                  <label htmlFor="contact-message" className="block text-sm font-medium text-foreground mb-1.5">Mensagem *</label>
+                  <textarea id="contact-message" required className="input min-h-[120px]" rows={5} placeholder="Escreva sua mensagem..." />
                 </div>
                 <button
                   type="submit"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-white font-semibold hover:bg-primary-dark transition-colors"
                 >
-                  <Send className="w-4 h-4" /> Enviar Mensagem
+                  <Send className="w-4 h-4" aria-hidden="true" /> Enviar Mensagem
                 </button>
               </form>
             )}

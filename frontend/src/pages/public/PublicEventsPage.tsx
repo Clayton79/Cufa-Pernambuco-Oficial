@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { MapPin, Clock, Users } from 'lucide-react';
 import { api } from '../../shared/services/api';
 import type { OngEvent, PaginatedResponse } from '../../shared/types';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const statusLabels: Record<string, string> = {
   scheduled: 'Agendado',
@@ -18,6 +19,7 @@ const statusColors: Record<string, string> = {
 };
 
 export function PublicEventsPage() {
+  useDocumentTitle('Eventos');
   const [events, setEvents] = useState<OngEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -45,8 +47,9 @@ export function PublicEventsPage() {
         </div>
 
         {isLoading ? (
-          <div className="flex justify-center py-20">
-            <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+          <div className="flex justify-center py-20" role="status" aria-live="polite">
+            <div className="w-8 h-8 border-4 border-primary/30 border-t-primary rounded-full animate-spin" aria-hidden="true" />
+            <span className="sr-only">Carregando eventos...</span>
           </div>
         ) : events.length === 0 ? (
           <p className="text-center text-muted py-20">Nenhum evento cadastrado ainda.</p>

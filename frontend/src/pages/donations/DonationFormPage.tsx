@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { ArrowLeft, Save, Loader2 } from 'lucide-react';
 import { Card, CardHeader, Button, Input, Select, Textarea, PageLoader, ErrorState } from '../../shared/components';
 import { donationApi } from '../../shared/services';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const donationFormSchema = z.object({
   donorName: z.string().min(3, 'Nome do doador deve ter pelo menos 3 caracteres'),
@@ -30,6 +31,7 @@ export function DonationFormPage() {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const isEditing = !!id;
+  useDocumentTitle(isEditing ? 'Editar Doação' : 'Nova Doação');
   const [isFetching, setIsFetching] = useState(isEditing);
   const [fetchError, setFetchError] = useState('');
 

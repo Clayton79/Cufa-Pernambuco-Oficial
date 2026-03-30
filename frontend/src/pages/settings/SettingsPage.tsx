@@ -9,6 +9,7 @@ import { z } from 'zod';
 import { Card, CardHeader, Button, Input, ConfirmDialog } from '../../shared/components';
 import { authApi, backupApi } from '../../shared/services';
 import { useAuthStore } from '../../shared/stores/authStore';
+import { useDocumentTitle } from '../../shared/hooks/useDocumentTitle';
 
 const profileSchema = z.object({
   name: z.string().min(3, 'Nome deve ter pelo menos 3 caracteres'),
@@ -28,6 +29,7 @@ type ProfileForm = z.infer<typeof profileSchema>;
 type PasswordForm = z.infer<typeof passwordSchema>;
 
 export function SettingsPage() {
+  useDocumentTitle('Configurações');
   const { user } = useAuthStore();
   const [backups, setBackups] = useState<string[]>([]);
   const [isLoadingBackups, setIsLoadingBackups] = useState(false);
@@ -110,7 +112,7 @@ export function SettingsPage() {
 
       {/* Feedback */}
       {message && (
-        <div className={`p-4 rounded-lg text-sm ${
+        <div role="alert" className={`p-4 rounded-lg text-sm ${
           message.type === 'success'
             ? 'bg-green-50 border border-green-200 text-green-700'
             : 'bg-red-50 border border-red-200 text-red-700'
@@ -125,11 +127,11 @@ export function SettingsPage() {
         <form onSubmit={profileForm.handleSubmit(onProfileSubmit)} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input label="Nome" error={profileForm.formState.errors.name?.message}
-              {...profileForm.register('name')} />
+              autoComplete="name" {...profileForm.register('name')} />
             <Input label="E-mail" type="email" error={profileForm.formState.errors.email?.message}
-              {...profileForm.register('email')} />
+              autoComplete="email" {...profileForm.register('email')} />
           </div>
-          <Input label="Telefone" {...profileForm.register('phone')} placeholder="(00) 00000-0000" />
+          <Input label="Telefone" {...profileForm.register('phone')} placeholder="(00) 00000-0000" autoComplete="tel" />
           <div className="flex justify-end">
             <Button type="submit" disabled={profileForm.formState.isSubmitting}>
               {profileForm.formState.isSubmitting
@@ -147,14 +149,14 @@ export function SettingsPage() {
         <form onSubmit={passwordForm.handleSubmit(onPasswordSubmit)} className="space-y-4">
           <Input label="Senha Atual" type="password"
             error={passwordForm.formState.errors.currentPassword?.message}
-            {...passwordForm.register('currentPassword')} />
+            autoComplete="current-password" {...passwordForm.register('currentPassword')} />
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Input label="Nova Senha" type="password"
               error={passwordForm.formState.errors.newPassword?.message}
-              {...passwordForm.register('newPassword')} />
+              autoComplete="new-password" {...passwordForm.register('newPassword')} />
             <Input label="Confirmar Nova Senha" type="password"
               error={passwordForm.formState.errors.confirmPassword?.message}
-              {...passwordForm.register('confirmPassword')} />
+              autoComplete="new-password" {...passwordForm.register('confirmPassword')} />
           </div>
           <div className="flex justify-end">
             <Button type="submit" disabled={passwordForm.formState.isSubmitting}>
