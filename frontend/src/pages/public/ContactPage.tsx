@@ -33,7 +33,7 @@ export function ContactPage() {
                 <MapPin className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground">Endereço</h3>
-              <p className="mt-1 text-sm text-muted">Recife, PE — Brasil</p>
+              <p className="mt-1 text-sm text-muted">Av. Malacó, 136 — Alto Santa Isabel</p>
             </div>
 
             <div className="bg-surface rounded-xl border border-border p-6">
@@ -49,7 +49,7 @@ export function ContactPage() {
                 <Phone className="w-5 h-5 text-primary" />
               </div>
               <h3 className="font-semibold text-foreground">Telefone</h3>
-              <p className="mt-1 text-sm text-muted">(81) 99999-0000</p>
+              <p className="mt-1 text-sm text-muted">(81) 99747-5008</p>
             </div>
           </div>
 

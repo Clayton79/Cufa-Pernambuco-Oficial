@@ -127,9 +127,9 @@ export function PublicLayout() {
             <div>
               <h4 className="text-white font-semibold mb-3">Contato</h4>
               <ul className="space-y-2 text-sm">
-                <li>Recife, PE — Brasil</li>
+                <li>Av. Malacó, 136 — Alto Santa Isabel</li>
                 <li>contato@cufape.org.br</li>
-                <li>(81) 99999-0000</li>
+                <li>(81) 99747-5008</li>
               </ul>
             </div>
           </div>
